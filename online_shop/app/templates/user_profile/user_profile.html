@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'user_profile/style_for_user_prof.css'%}">
+
+{% endblock style %}
+
+{% block main %}
+<body>
+<section>
+    <div class="container py-5">
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              {% if user_profile.img %}
+              <img src="{{ user_profile.img.url }}" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              {% endif %}
+              <h5 class="my-3">{{ user.username }}</h5>
+              <div class="d-flex justify-content-center mb-2">
+                {% if request.user.id == user.id %}
+                <button type="button" onclick="window.location.href='/edit_user_profile/{{ user.id }}'" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Edit</button>
+                {% endif %}
+                {% if request.user.id != user.id %}
+                <button type="button" onclick="window.location.href='/chat/sender/{{ request.user.id }}/receiver/{{ user.id }}/'" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user_profile.firstname }} {{ user_profile.lastname }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user_profile.email }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user_profile.phone }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user_profile.mobile }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ user_profile.address }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% for product in products %}
+          <div class="products-box">
+            <div class="product-img">
+                <img src="{{ product.img.url }}" alt="rasm">
+            </div>
+                <div class="product-info">
+                    <div class="product-name">
+                        <a href="{% url 'elon_detail' product.id %}">Nomi: {{ product.name }}</a>
+                    </div>
+                    <div class="product-price">
+                        <p>Narxi {{ Product.price }}</p>
+                    </div>
+                    <div class="product-information">
+                        <p>about: {{ product.description }}</p>
+                    </div>
+                    <div class="product-created">
+                        <p>Created-time: {{ product.date_time }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+{% endblock main %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_extras %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'elonlar/style_add_elon.css'%}">
+{% endblock style %}
+
+{% block main%}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<body class="bg-light">
+    <div class="bg-light">
+        <h1>Elon qo'shish</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_category">Category:</label>
+                <select name="category" id="id_category" required>
+                    <option value="" selected disabled>Choose category...</option>
+                    {% all_categories as categories %}
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" style="color: black">{{ category.category }}</option>
+                    {% endfor %}
+                    <!-- Qolgan kategoriyalar uchun kerakli optionlarni qo'shing -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_img">Image:</label>
+                <input name="img" type="file" accept="image/*" id="id_img" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="id_price">Price:</label>
+                <input id= "id_price" name="price" type="number" placeholder="Price" required>
+            </div>
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                <textarea id="id_description" name="description" placeholder="Description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">E'lonnni qo'shish</button>
+        </form>
+    </div>
+
+<script src="{% static 'js/js_message.js' %}"></script>
+</body>
+{% endblock main%}
+
+{% block footer %}
+
+{% endblock footer %}

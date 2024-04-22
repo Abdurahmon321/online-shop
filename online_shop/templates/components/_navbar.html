@@ -1,0 +1,47 @@
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'style_base/style_for_index.css'%}">
+<style>
+    .navigation {
+    display: flex;
+    justify-content: space-between; /* Yechim turini sozlash */
+    align-items: center; /* Elementlarni o'rtaga qatorlash */
+    }
+
+</style>
+{% endblock style %}
+
+{% block navbar %}
+<header>
+    <div class="logo">
+        <img src="{% static 'style_base/online_shop_3.png' %}" alt="logo">
+    </div>
+    <nav class="navigation">
+        <form action="/qidiruv-url/" method="GET">
+            <input class="search-input-bar" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="search-btn" type="submit">Search</button>
+        </form>
+
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'elonlar' %}">E'lonlar</a>
+        <a href="{% url 'messages' %}">Messages</a>
+        <a href="{% url 'services' %}">Service</a>
+
+        {% if user.is_authenticated %}
+        <button class="btnLogin-popup" onclick="window.location.href = '{% url 'logout' %}'">Logout</button>
+        {% else %}
+        <button class="btnLogin-popup" onclick="window.location.href = '{% url 'login' %}'">Login</button>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'user_profile' request.user.id %}"><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                                                class="rounded-circle"
+                                                                height="50"
+                                                                alt="Black and White Portrait of a Man"
+                                                                loading="lazy"
+        ></a>
+        {% endif %}
+    </nav>
+</header>
+{% endblock navbar %}

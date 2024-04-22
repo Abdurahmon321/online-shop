@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'messages/messages.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+{% endblock style %}
+
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<body>
+<h3 style="color: black; text-style:bold; margin-left: 20px;">Hozircha demoda ishlaydi keyinchalik hatolar bartaraf etiladi! </h3>
+    <main>
+        <div class="chats-page">
+            <!-- Navbar -->
+            <div class="chats-page-navbar">
+                <!-- Search bar -->
+                <div class="chat-search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <!-- Edit button -->
+                <div class="chat-edit-item">
+                    <span class="material-symbols-outlined">edit</span>
+                </div>
+            </div>
+            <!-- Chat list -->
+            {% for message in messages %}
+            <div class="chats-list">
+                <!-- Chat item -->
+                <a href="#">
+                    
+                </a>
+                <div class="chats-pages-item">
+                    <!-- Profile -->
+                    <div class="chat-person-profile">
+                        <a href="#">
+                            <img src="{{ message.receiver.img.url }}" alt="rasm">
+                        </a>
+                        
+                    </div>
+                    <!-- Name -->
+                    <div class="chats-name">
+                        <a href="/chat/sender/{{ request.user.id }}/receiver/{{ message.receiver.id }}/"><p>{{ message.receiver.username }}</p></a>
+                        <div class="message">
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <script src="{% static 'js/js_message.js' %}"></script>
+</body>
+{% endblock main %}
+{% block footer %}
+{% endblock footer %}

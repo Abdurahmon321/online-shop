@@ -1,0 +1,106 @@
+/* chats_page_styles.css */
+
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chats-page-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.chat-person-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-search-bar {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.chat-search-bar input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.chat-edit-item {
+    padding: 0 10px;
+    background: color;
+    color: black;
+    border-radius: 4rem;
+    cursor: pointer;
+}
+
+.chats-list {
+    margin-top: 20px;
+}
+
+.chats-pages-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 1.3rem;
+    padding-left: 15px;
+    background: rgba(255, 255, 255, .5);
+    border-bottom: 1px solid #ccc;
+}
+
+.chats-name {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 40px; /* o'zgarish mumkin */
+    margin-right: 10px; /* agar qo'shimcha ichini ajratish uchun */
+}
+
+.chats-name p {
+    margin: 0; /* to'g'rilash uchun yozilgan qatorlarni o'chirish */
+    padding: 0; /* to'g'rilash uchun yozilgan qatorlarni o'chirish */
+}
+
+.chats-name::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* opaqs oq rang */
+    z-index: -1; /*  frontal namoyishni pastga qo'yish */
+    opacity: 0;
+    transition: opacity 0.3s ease; /* animatsiya davomiyligi va usuli */
+}
+
+.chats-name:hover::before {
+    opacity: 1; /* hover qilinganda oq rangning oqilishi */
+}
+
+.chats-last-message {
+    color: black;
+}
+
+.chats-name p {
+    font-weight: bold;
+}

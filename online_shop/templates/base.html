@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!--    <link rel="stylesheet" href="style_for_index.css">-->
+
+
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'style_base/style_for_index.css' %}">
+
+    {% block style %}
+
+    {% endblock style %}
+
+</head>
+<body>
+
+        <div>
+            {% block header %}
+
+            {% include 'components/_navbar.html' %}
+
+            {% endblock header %}
+        </div>
+
+
+
+
+
+
+        <div style="margin-top: 10rem;">
+            {% block main %}
+            {% endblock main %}
+        </div>
+
+
+    <!-- Main -->
+
+        <div>
+            {% block footer %}
+
+            {% include 'layout/footer.html'%}
+
+            {% endblock footer%}
+        </div>
+
+
+
+</body>
+</html>

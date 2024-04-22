@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #333399, #ff00cc);
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.categories {
+    margin-bottom: 20px;
+}
+
+.categories ul {
+    list-style-type: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+.categories li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.category-link {
+    color: black;
+}
+
+.products-box {
+    display: inline-block;
+    background: rgba(255, 255, 255, .5);
+    padding: 20px;
+    height: 400px;
+    width: 20rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s; /* Yorug'lik va o'lchamning qanday tezroq o'zgarishini belgilash */
+}
+
+.products-box:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Yorug'lik va hover qilganda paydo bo'ladi */
+    transform: scale(1.05); /* Elementni kattalashtirish */
+}
+
+.product-img {
+    max-width: 10rem; /* Rasmning eng katta o'lchamiga yetishishi uchun */
+    max-height: 10rem; /* Rasmning eng katta balandligiga yetishishi uchun */
+    display: block; /* Rasmni blok element sifatida ko'rsatish */
+    margin: auto;
+}
+
+.product-img img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.product-name a {
+
+    color: #333;
+    text-decoration: none;
+}
+
+.product-price {
+    font-weight: bold;
+}
+
+.product-information {
+    font-style: italic;
+}
+
+.product-created {
+    margin-bottom: 10px;
+    font-size: 0.8em;
+    color: #000000;
+}

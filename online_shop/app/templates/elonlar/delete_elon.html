@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="container" style="color: white;">
+    <h1>Elonni o'chirish</h1>
+    <p>Ishonchingiz komilmi? Agar haa bo'lsa, quyidagi tugmani bosing:</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">O'chirish</button>
+    </form>
+</div>
+<script src="{% static 'js/js_message.js' %}"></script>
+{% endblock main %}

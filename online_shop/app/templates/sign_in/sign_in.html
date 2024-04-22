@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="{% static 'login/styles.css'%}">
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="login-card-container">
+    <div class="login-card">
+        <div class="login-card-logo">
+            <img src="{% static 'login/online_shop_3.png' %}" alt="logo">
+
+        </div>
+        <div class="login-card-header">
+            <h1>Sign in</h1>
+            <div>Please Login to user platform</div>
+        </div>
+        <form class="login-card-form" method="post">
+            {% csrf_token %}
+            <div class="form-item">
+                <span class="form-item-icon material-symbols-rounded">mail</span>
+                <input name="username" type="text" placeholder="Username" required autofocus>
+
+            </div>
+            <div class="form-item">
+                <span class="form-item-icon material-symbols-rounded">lock</span>
+                <input name="password1" type="password" placeholder="Enter password" required>
+            </div>
+            <div class="form-item">
+                <span class="form-item-icon material-symbols-rounded">lock</span>
+                <input name="password2" type="password" placeholder="Enter password again" required>
+            </div>
+            <div class="form-item-other">
+
+
+            </div>
+            <button type="submit">Sign in</button>
+        </form>
+    </div>
+    <div class="login-card-social">
+
+    </div>
+</div>
+<script src="{% static 'js/js_message.js' %}"></script>
+</body>
+</html>

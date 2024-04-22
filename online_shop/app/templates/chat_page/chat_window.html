@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'chat_page/style_for_chat_win.css' %}">
+
+{% endblock style %}
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<body>
+<h3 style="color: black; text-style:bold; margin-left: 20px;">Hozircha demoda ishlaydi keyinchalik hatolar bartaraf etiladi! </h3>
+<div class="chat-container" style="background-color: #ffff;">
+    <div class="chat">
+        <div class="chat-header">
+            <img src="{{ receiver.img.url }}" alt="User Profile">
+            <h2>{{ receiver.username }}</h2>
+            <a class="back-button" href="{% url 'messages' %}">&larr; Back</a>
+        </div>
+        <div class="chat-messages">
+            {% for message in messages %}
+            {% if message.sender == sender %}
+            <div class="message sent">
+                <p>{{ message.message }}</p>
+            </div>
+            {% else %}
+            <div class="message received">
+                <p>{{ message.message }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="chat-input">
+            <form id="messageForm" method="post" action="{% url 'send_message' %}">
+                {% csrf_token %}
+                <input type="hidden" name="sender_id" value="{{ sender.id }}">
+                <input type="hidden" name="receiver_id" value="{{ receiver.id }}">
+                <input type="text" id="messageInput" name="message" placeholder="Type your message here..." required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'chat_page/chat.js' %}"></script>
+<script src="{% static 'js/js_message.js' %}"></script>
+
+</body>
+{% endblock main %}
+{% block footer %}
+{% endblock footer %}

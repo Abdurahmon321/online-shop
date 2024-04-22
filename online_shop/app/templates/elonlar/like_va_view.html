@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_extras %}
+
+{% block style %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+
+{% endblock style %}
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<main>
+    <div class="categories">
+        <ul>
+            <li><a href="{% url 'add_elon' %}" class="category-link">E'lon qo'shish</a></li>
+            <li><a href="{% url 'mening_elonlarim' %}" class="category-link">Mening e'lonlarim</a></li>
+            <li><a href="{% url 'korgan_elonlarim' %}" class="category-link">Ko'rgan e'lonlarim</a></li>
+            <li><a href="{% url 'like_bosgan_elonlarim' %}" class="category-link">Like bosgan e'lonlarim</a></li>
+        </ul>
+    </div>
+    {% for product in products %}
+    <div class="products-box">
+        <div class="product-img">
+            <img src="{{ product.product.img.url }}" alt="rasm">
+        </div>
+        <div class="product-info">
+            <div class="product-name">
+                <a href="{% url 'elon_detail' product.product.id %}">Nomi: {{ product.product.name }}</a>
+            </div>
+            <br>
+            <div class="product-price">
+                <p>Narxi: {{ product.product.price }}</p>
+            </div>
+            <div class="product-information">
+                <p>Haqida: {{ product.product.description|truncatechars_html:100   }}</p>
+            </div>
+            <div class="product-created">
+                <p>Qo'shilgan vaqti: {{ product.product.date_time }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="{% static 'js/js_message.js' %}"></script>
+</main>
+{% endblock main %}

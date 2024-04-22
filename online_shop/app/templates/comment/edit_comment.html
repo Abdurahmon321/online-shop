@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_extras %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'elonlar/style_elon_detail.css' %}">
+
+{% endblock style %}
+
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <hr>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% if request.user != product.author %}
+        <div class="col-md-4">
+            <a href="#" class="btn btn-info btn-sm">View Author Profile</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script src="{% static 'js/js_message.js' %}"></script>
+{% endblock main %}
+{% block footer %}
+{% endblock footer %}

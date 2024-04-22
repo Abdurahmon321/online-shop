@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_extras %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+{% endblock style %}
+
+{% block main %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<main>
+        <div class="categories">
+            <ul>
+                {% all_categories as categories %}
+                {% for category in categories%}
+                <li><a style="color: black" href="{% url 'filter_by_category' category.id %}">{{ category.category }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% for product in products %}
+        <div class="products-box">
+            <div class="product-img">
+                <img src="{{ product.img.url }}" alt="rasm">
+            </div>
+            <div class="product-info">
+                <div class="product-name">
+                    <a href="{% url 'elon_detail' product.id %}">Nomi: {{ product.name }}</a>
+                </div>
+                <br>
+                <div class="product-price">
+                    Narxi: {{ product.price }}
+                </div>
+                <div class="product-information">
+                    Haqida: {{ product.description|truncatechars_html:100  }}
+                </div>
+                <div class="product-created">
+                    Qo'shilgan vaqti: {{ product.date_time }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    <script src="{% static 'js/js_message.js' %}"></script>
+    </main>
+{% endblock main%}
+
